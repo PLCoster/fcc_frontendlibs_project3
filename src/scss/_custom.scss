@@ -1,3 +1,39 @@
 /*
 == CUSTOM STYLES ==
 */
+
+body,
+#root {
+  height: 100vh;
+}
+
+.navbar {
+  .navbar-brand {
+    margin-left: 40px;
+  }
+}
+
+#app-container {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .flex-grow {
+    flex: 1 0 auto;
+  }
+}
+
+#drum-machine {
+  width: 600px;
+  height: 300px;
+  border-radius: 20px;
+
+  .drum-machine-container {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: space-between;
+  }
+}

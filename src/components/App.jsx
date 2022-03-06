@@ -1,7 +1,19 @@
 import React from 'react';
 
+import NavBar from './NavBar';
+import DrumMachine from './DrumMachine';
+
 function App() {
-  return <h1>This is the Drum Machine App</h1>;
+  return (
+    <>
+      <NavBar />
+      <div id="app-container" className="container">
+        <div className="flex-grow" />
+        <DrumMachine />
+        <div className="flex-grow" />
+      </div>
+    </>
+  );
 }
 
 export default App;
