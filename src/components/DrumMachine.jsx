@@ -67,7 +67,9 @@ function DrumMachine() {
 
   const handleVolumeChange = (newVolume) => {
     setVolume(newVolume);
-    setDisplayMessage(`Volume: ${newVolume}`);
+    if (power) {
+      setDisplayMessage(`Volume: ${newVolume}`);
+    }
   };
 
   const handleRecordingChange = () => {
@@ -182,9 +184,11 @@ function DrumMachine() {
       <div className="drum-machine-container">
         <ControlsDisplay
           displayMessage={displayMessage}
+          setDisplayMessage={setDisplayMessage}
           volume={volume}
           handleVolumeChange={handleVolumeChange}
           power={power}
+          powerRef={powerRef}
           handlePowerChange={handlePowerChange}
           recording={recording}
           handleRecordingChange={handleRecordingChange}

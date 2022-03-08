@@ -149,6 +149,9 @@ body,
       }
 
       #control-buttons {
+        display: grid;
+        width: 220px;
+        grid-template-columns: repeat(2, 1fr);
       }
 
       .control-button {
