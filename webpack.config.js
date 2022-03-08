@@ -29,6 +29,10 @@ module.exports = {
         test: /\.(scss)$/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
+      {
+        test: /\.mp3$/,
+        type: 'asset/resource',
+      },
     ],
   },
   devServer: {
