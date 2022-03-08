@@ -1,11 +1,14 @@
 import React from 'react';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+
 function ControlsDisplay({ displayMessage, volume, handleVolumeChange }) {
   return (
     <div id="controls-container">
       <div id="display">{displayMessage}</div>
       <div>
-        Test <i className="fa-solid fa-volume-low" />
+        Test <FontAwesomeIcon icon={faCoffee} />
         <input
           id="volume-control"
           className="mt-5"
