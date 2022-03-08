@@ -2,18 +2,29 @@
 /* eslint-disable jsx-a11y/media-has-caption */
 import React, { useState, useEffect, useRef } from 'react';
 
-function DrumPad({ id, src, text, playSound, setDisplayMessage, volume }) {
+function DrumPad({
+  id,
+  src,
+  text,
+  playSound,
+  handleMessageDisplay,
+  volume,
+  power,
+}) {
   const [hit, setHit] = useState('');
 
   const audioRef = useRef();
 
   const playClip = () => {
-    // Reset the Audio Clip if playing then play it:
-    audioRef.current.currentTime = 0;
-    audioRef.current.play();
-    console.log(audioRef.current.volume);
-    setHit('hit');
-    setDisplayMessage(text);
+    // Don't play the clip if power is off
+    if (power) {
+      // Reset the Audio Clip if playing then play it:
+      audioRef.current.currentTime = 0;
+      audioRef.current.play();
+      console.log(audioRef.current.volume);
+      setHit('hit');
+      handleMessageDisplay(text);
+    }
   };
 
   // Play drum pad sound when playSound prop is true, stop when false

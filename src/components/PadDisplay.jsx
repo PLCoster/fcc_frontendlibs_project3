@@ -4,7 +4,7 @@ import DrumPad from './DrumPad';
 
 import padAudioInfo from '../assets/audio/audioLoader';
 
-function PadDisplay({ pressedKeys, setDisplayMessage, volume }) {
+function PadDisplay({ pressedKeys, handleMessageDisplay, volume, power }) {
   return (
     <div id="pad-container">
       {padAudioInfo.map(({ id, text, src }) => (
@@ -13,9 +13,10 @@ function PadDisplay({ pressedKeys, setDisplayMessage, volume }) {
           id={id}
           text={text}
           src={src}
-          playSound={pressedKeys[id]}
-          setDisplayMessage={setDisplayMessage}
+          playSound={pressedKeys[id] && power}
+          handleMessageDisplay={handleMessageDisplay}
           volume={volume}
+          power={power}
         />
       ))}
     </div>

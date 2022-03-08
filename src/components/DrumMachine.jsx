@@ -16,8 +16,27 @@ function DrumMachine() {
     C: false,
   });
 
-  const [displayMessage, setDisplayMessage] = useState('');
+  const [power, setPower] = useState(true);
+  const [displayMessage, setDisplayMessage] = useState('Welcome!');
   const [volume, setVolume] = useState(100);
+
+  const handlePowerChange = () => {
+    const newPower = !power;
+    setPower(newPower);
+
+    // If no power then blank display:
+    if (!newPower) {
+      setDisplayMessage('');
+    } else {
+      setDisplayMessage('Welcome!');
+    }
+  };
+
+  const handleMessageDisplay = (message) => {
+    if (power) {
+      setDisplayMessage(message);
+    }
+  };
 
   const handleVolumeChange = (newVolume) => {
     setVolume(newVolume);
@@ -68,11 +87,14 @@ function DrumMachine() {
           displayMessage={displayMessage}
           volume={volume}
           handleVolumeChange={handleVolumeChange}
+          power={power}
+          handlePowerChange={handlePowerChange}
         />
         <PadDisplay
           pressedKeys={pressedKeys}
-          setDisplayMessage={setDisplayMessage}
+          handleMessageDisplay={handleMessageDisplay}
           volume={volume}
+          power={power}
         />
       </div>
     </div>

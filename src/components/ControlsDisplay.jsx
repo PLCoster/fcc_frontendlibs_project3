@@ -1,17 +1,24 @@
 import React from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+import { faVolumeLow, faVolumeHigh } from '@fortawesome/free-solid-svg-icons';
 
-function ControlsDisplay({ displayMessage, volume, handleVolumeChange }) {
+function ControlsDisplay({
+  displayMessage,
+  volume,
+  handleVolumeChange,
+  power,
+  handlePowerChange,
+}) {
   return (
     <div id="controls-container">
-      <div id="display">{displayMessage}</div>
-      <div>
-        Test <FontAwesomeIcon icon={faCoffee} />
+      <div id="display" className={`${power ? 'active' : ''}`}>
+        {displayMessage}
+      </div>
+      <div className="mt-5">
+        <FontAwesomeIcon icon={faVolumeLow} className="vol-icon" />
         <input
           id="volume-control"
-          className="mt-5"
           type="range"
           min="0"
           max="100"
@@ -19,9 +26,29 @@ function ControlsDisplay({ displayMessage, volume, handleVolumeChange }) {
           value={volume}
           aria-label="volume"
         />
-        <i class="fas fa-volume-up"></i>
+        <FontAwesomeIcon icon={faVolumeHigh} className="vol-icon" />
       </div>
-      <i class="fas fa-volume-up"></i>
+      <div id="control-buttons" className="mt-3">
+        <div>
+          <div
+            role="button"
+            className={`control-button ${power ? 'active' : ''} m-3`}
+            tabIndex={0}
+            aria-label="Start/Stop Recording"
+          >
+            Record
+          </div>
+          <div
+            role="button"
+            className={`control-button ${power ? 'active' : ''} m-3`}
+            tabIndex={0}
+            onClick={handlePowerChange}
+            aria-label="Power On/Off"
+          >
+            Power
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
