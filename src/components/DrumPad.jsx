@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/media-has-caption */
 import React, { useState, useEffect, useRef } from 'react';
 
-function DrumPad({ id, src, text, playSound, setDisplayMessage }) {
+function DrumPad({ id, src, text, playSound, setDisplayMessage, volume }) {
   const [hit, setHit] = useState('');
 
   const audioRef = useRef();
@@ -11,6 +11,7 @@ function DrumPad({ id, src, text, playSound, setDisplayMessage }) {
     // Reset the Audio Clip if playing then play it:
     audioRef.current.currentTime = 0;
     audioRef.current.play();
+    console.log(audioRef.current.volume);
     setHit('hit');
     setDisplayMessage(text);
   };
@@ -24,6 +25,11 @@ function DrumPad({ id, src, text, playSound, setDisplayMessage }) {
     }
   }, [playSound]);
 
+  useEffect(() => {
+    audioRef.current.volume = volume / 100;
+    console.log('seting volume to: ', audioRef.current.volume);
+  }, [volume]);
+
   return (
     <div
       id={id}
@@ -31,6 +37,7 @@ function DrumPad({ id, src, text, playSound, setDisplayMessage }) {
       role="button"
       onMouseDown={playClip}
       onMouseUp={() => setHit('')}
+      onMouseLeave={() => setHit('')}
       tabIndex={0}
     >
       {id}

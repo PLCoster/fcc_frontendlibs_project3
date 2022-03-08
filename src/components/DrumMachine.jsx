@@ -17,6 +17,12 @@ function DrumMachine() {
   });
 
   const [displayMessage, setDisplayMessage] = useState('');
+  const [volume, setVolume] = useState(100);
+
+  const handleVolumeChange = (newVolume) => {
+    setVolume(newVolume);
+    setDisplayMessage(`Volume: ${newVolume}`);
+  };
 
   // Ref is required in order to access state inside event listener
   const pressedKeysRef = useRef(pressedKeys);
@@ -60,11 +66,13 @@ function DrumMachine() {
       <div className="drum-machine-container">
         <ControlsDisplay
           displayMessage={displayMessage}
-          setDisplayMessage={setDisplayMessage}
+          volume={volume}
+          handleVolumeChange={handleVolumeChange}
         />
         <PadDisplay
           pressedKeys={pressedKeys}
           setDisplayMessage={setDisplayMessage}
+          volume={volume}
         />
       </div>
     </div>

@@ -24,6 +24,11 @@ body {
   height: 100vh;
 }
 
+body,
+#root {
+  background-color: darkgrey !important;
+}
+
 .navbar {
   .navbar-brand {
     margin-left: 40px;
@@ -49,9 +54,11 @@ body {
 #drum-machine {
   width: 600px;
   height: 400px;
-  background-color: #222;
+  background-color: #333;
   border: 2px #444;
   border-radius: 20px;
+  box-shadow: 1px 1px 0px #666, 2px 2px 0px #666, 3px 3px 0px #666,
+    4px 4px 0px #666, 5px 5px 0px #666, 6px 6px 0px #666;
 
   .logo {
     font-family: 'lobster';
@@ -110,6 +117,24 @@ body {
         height: 50px;
         width: 220px;
         background-color: #e65550;
+        border: 3px solid #111;
+      }
+
+      #volume-control {
+        cursor: pointer;
+        background-color: #111;
+      }
+
+      #volume-control::-webkit-slider-thumb,
+      #volume-control::-moz-range-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 25px;
+        height: 25px;
+        background: #e65550;
+        border: 3px solid #333;
+        border-radius: 0px;
+        cursor: pointer;
       }
     }
   }
