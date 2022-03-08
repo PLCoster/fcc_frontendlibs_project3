@@ -9,6 +9,10 @@ function ControlsDisplay({
   handleVolumeChange,
   power,
   handlePowerChange,
+  recording,
+  handleRecordingChange,
+  playBack,
+  handlePlayBackChange,
 }) {
   return (
     <div id="controls-container">
@@ -32,15 +36,29 @@ function ControlsDisplay({
         <div>
           <div
             role="button"
-            className={`control-button ${power ? 'active' : ''} m-3`}
+            className={`control-button ${
+              power && recording ? 'active' : ''
+            } m-3`}
             tabIndex={0}
+            onClick={handleRecordingChange}
             aria-label="Start/Stop Recording"
           >
             Record
           </div>
           <div
             role="button"
-            className={`control-button ${power ? 'active' : ''} m-3`}
+            className={`control-button ${
+              power && playBack ? 'active' : ''
+            } m-3`}
+            tabIndex={0}
+            onClick={handlePlayBackChange}
+            aria-label="Start/Stop Recording"
+          >
+            PlayBack
+          </div>
+          <div
+            role="button"
+            className={`control-button ${power ? 'active' : ''} m-3 mt-4`}
             tabIndex={0}
             onClick={handlePowerChange}
             aria-label="Power On/Off"
