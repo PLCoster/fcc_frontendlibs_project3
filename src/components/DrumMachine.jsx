@@ -117,6 +117,10 @@ function DrumMachine() {
   };
 
   const handlePlayBackChange = () => {
+    if (!recordingStart) {
+      setDisplayMessage('No Recordings');
+      return;
+    }
     // Set playback and playback start time:
     const newPlayBack = !playBack;
     playBackRef.current = newPlayBack;

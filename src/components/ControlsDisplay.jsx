@@ -19,7 +19,7 @@ function ControlsDisplay({
       <div id="display" className={`${power ? 'active' : ''}`}>
         {displayMessage}
       </div>
-      <div className="mt-5">
+      <div className="mt-3">
         <FontAwesomeIcon icon={faVolumeLow} className="vol-icon" />
         <input
           id="volume-control"
@@ -32,13 +32,13 @@ function ControlsDisplay({
         />
         <FontAwesomeIcon icon={faVolumeHigh} className="vol-icon" />
       </div>
-      <div id="control-buttons" className="mt-3">
+      <div id="control-buttons">
         <div>
           <div
             role="button"
             className={`control-button ${
               power && recording ? 'active' : ''
-            } m-3`}
+            } mt-2`}
             tabIndex={0}
             onClick={handleRecordingChange}
             aria-label="Start/Stop Recording"
@@ -49,7 +49,7 @@ function ControlsDisplay({
             role="button"
             className={`control-button ${
               power && playBack ? 'active' : ''
-            } m-3`}
+            } mt-2`}
             tabIndex={0}
             onClick={handlePlayBackChange}
             aria-label="Start/Stop Recording"
@@ -58,7 +58,21 @@ function ControlsDisplay({
           </div>
           <div
             role="button"
-            className={`control-button ${power ? 'active' : ''} m-3 mt-4`}
+            className={`control-button ${
+              power && playBack && recording ? 'active' : ''
+            } mt-2`}
+            tabIndex={0}
+            onClick={() => {
+              handlePlayBackChange();
+              handleRecordingChange();
+            }}
+            aria-label="Start/Stop PlayBack and Recording"
+          >
+            PB + Rec
+          </div>
+          <div
+            role="button"
+            className={`control-button ${power ? 'active' : ''} mt-4`}
             tabIndex={0}
             onClick={handlePowerChange}
             aria-label="Power On/Off"
