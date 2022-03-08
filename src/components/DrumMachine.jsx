@@ -189,6 +189,7 @@ function DrumMachine() {
         />
         <PadDisplay
           pressedKeys={pressedKeys}
+          setPressedKeys={setPressedKeys}
           handleMessageDisplay={handleMessageDisplay}
           volume={volume}
           power={power}

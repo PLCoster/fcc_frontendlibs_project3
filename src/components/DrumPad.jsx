@@ -6,6 +6,8 @@ function DrumPad({
   id,
   src,
   text,
+  pressedKeys,
+  setPressedKeys,
   playSound,
   handleMessageDisplay,
   volume,
@@ -46,9 +48,9 @@ function DrumPad({
       id={id}
       className={`drum-pad user-select-none ${hit}`}
       role="button"
-      onMouseDown={playClip}
-      onMouseUp={() => setHit('')}
-      onMouseLeave={() => setHit('')}
+      onMouseDown={() => setPressedKeys({ ...pressedKeys, [id]: true })}
+      onMouseUp={() => setPressedKeys({ ...pressedKeys, [id]: false })}
+      onMouseLeave={() => setPressedKeys({ ...pressedKeys, [id]: false })}
       tabIndex={0}
     >
       {id}
