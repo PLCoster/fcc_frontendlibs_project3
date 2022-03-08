@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/media-has-caption */
 import React, { useState, useEffect, useRef } from 'react';
 
-function DrumPad({ id, src, text, playSound }) {
+function DrumPad({ id, src, text, playSound, setDisplayMessage }) {
   const [hit, setHit] = useState('');
 
   const audioRef = useRef();
@@ -12,6 +12,7 @@ function DrumPad({ id, src, text, playSound }) {
     audioRef.current.currentTime = 0;
     audioRef.current.play();
     setHit('hit');
+    setDisplayMessage(text);
   };
 
   // Play drum pad sound when playSound prop is true, stop when false

@@ -11,6 +11,11 @@
   src: url('../assets/fonts/Lobster-Regular.ttf') format('truetype');
 }
 
+@font-face {
+  font-family: 'VT323';
+  src: url('../assets/fonts/VT323-Regular.ttf') format('truetype');
+}
+
 /*
 == OVERALL STYLES ==
 */
@@ -56,7 +61,11 @@ body {
     display: flex;
     align-items: center;
     text-align: center;
-    justify-content: space-between;
+    justify-content: space-around;
+
+    /*
+    == PADS ==
+    */
 
     #pad-container {
       display: grid;
@@ -81,6 +90,26 @@ body {
       .drum-pad:hover {
         cursor: pointer;
         background-color: #222;
+      }
+    }
+
+    /*
+    == CONTROLS DISPLAY ==
+    */
+
+    #controls-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      #display {
+        font-family: 'VT323';
+        font-size: 32px;
+        color: #111;
+        font-weight: 700;
+        height: 50px;
+        width: 220px;
+        background-color: #e65550;
       }
     }
   }

@@ -16,6 +16,8 @@ function DrumMachine() {
     C: false,
   });
 
+  const [displayMessage, setDisplayMessage] = useState('');
+
   // Ref is required in order to access state inside event listener
   const pressedKeysRef = useRef(pressedKeys);
 
@@ -56,8 +58,14 @@ function DrumMachine() {
     <div id="drum-machine" className="text-light text-center mt-5 p-3">
       <h4 className="logo">Free Drummer</h4>
       <div className="drum-machine-container">
-        <ControlsDisplay />
-        <PadDisplay pressedKeys={pressedKeys} />
+        <ControlsDisplay
+          displayMessage={displayMessage}
+          setDisplayMessage={setDisplayMessage}
+        />
+        <PadDisplay
+          pressedKeys={pressedKeys}
+          setDisplayMessage={setDisplayMessage}
+        />
       </div>
     </div>
   );
