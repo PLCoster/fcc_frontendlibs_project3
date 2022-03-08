@@ -26,7 +26,7 @@ function DrumPad({ id, src, text, playSound }) {
   return (
     <div
       id={id}
-      className={`drum-pad ${hit}`}
+      className={`drum-pad user-select-none ${hit}`}
       role="button"
       onMouseDown={playClip}
       onMouseUp={() => setHit('')}

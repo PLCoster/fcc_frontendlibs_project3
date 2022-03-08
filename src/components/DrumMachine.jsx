@@ -21,7 +21,6 @@ function DrumMachine() {
 
   // Add eventListeners for keyboard down/up when the DrumMachine mounts:
   useEffect(() => {
-    console.log('MOUNTING DRUM MACHINE');
     const keyDownEventListener = (e) => {
       if (pressedKeysRef.current[e.code[3]] === false) {
         pressedKeysRef.current = {
@@ -53,12 +52,8 @@ function DrumMachine() {
     };
   }, []);
 
-  useEffect(() => {
-    console.log('pressedKeysUpdated: ', pressedKeys);
-  }, [pressedKeys]);
-
   return (
-    <div id="drum-machine" className="text-light text-center p-3">
+    <div id="drum-machine" className="text-light text-center mt-5 p-3">
       <h4 className="logo">Free Drummer</h4>
       <div className="drum-machine-container">
         <ControlsDisplay />

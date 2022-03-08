@@ -8,9 +8,7 @@ function App() {
     <>
       <NavBar />
       <div id="app-container" className="container">
-        <div className="flex-grow" />
         <DrumMachine />
-        <div className="flex-grow" />
       </div>
     </>
   );
