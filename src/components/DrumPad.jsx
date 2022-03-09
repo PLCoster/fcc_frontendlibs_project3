@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/media-has-caption */
 import React, { useState, useEffect, useRef } from 'react';
@@ -23,7 +24,6 @@ function DrumPad({
       // Reset the Audio Clip if playing then play it:
       audioRef.current.currentTime = 0;
       audioRef.current.play();
-      console.log(audioRef.current.volume);
       setHit('hit');
       handleMessageDisplay(text);
     }
@@ -40,7 +40,6 @@ function DrumPad({
 
   useEffect(() => {
     audioRef.current.volume = volume / 100;
-    console.log('seting volume to: ', audioRef.current.volume);
   }, [volume]);
 
   return (
