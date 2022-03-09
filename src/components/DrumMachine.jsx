@@ -26,6 +26,8 @@ const initialKeyStates = {
 
 function DrumMachine() {
   const [pressedKeys, setPressedKeys] = useState(initialKeyStates);
+  // Ref is required in order to access state inside event listener
+  const pressedKeysRef = useRef(pressedKeys);
 
   const [power, setPower] = useState(true);
   const powerRef = useRef(true);
@@ -44,27 +46,32 @@ function DrumMachine() {
   const playBackRef = useRef(false);
   const playBackDataRef = useRef(null);
 
+  // Handler for pressing power button -> power on/off
   const handlePowerChange = () => {
     const newPower = !power;
     powerRef.current = newPower;
     setPower(newPower);
 
-    // If no power then blank display:
+    // If no power then blank display, turn off recording/playback:
     if (!newPower) {
       setDisplayMessage('');
       setRecording(false);
       setPlayBack(false);
     } else {
+      // When power comes on display welcome message, reset pressed keys
       setDisplayMessage('Welcome!');
+      setPressedKeys(initialKeyStates);
     }
   };
 
+  // Handler for updating message display with message only when power on
   const handleMessageDisplay = (message) => {
     if (power) {
       setDisplayMessage(message);
     }
   };
 
+  // Handler to update volume setting and display current volume using slider
   const handleVolumeChange = (newVolume) => {
     setVolume(newVolume);
     if (power) {
@@ -72,6 +79,7 @@ function DrumMachine() {
     }
   };
 
+  // Handler when pressing 'Record' button -> turn on/off recording functionality
   const handleRecordingChange = () => {
     if (power) {
       const newRecording = !recording;
@@ -88,6 +96,7 @@ function DrumMachine() {
     }
   };
 
+  // Handler that is triggered when pads are activated during recording
   const handleRecordingUpdate = (keysPressed) => {
     const newRecordingNode = new RecordingNode(
       Date.now() - recordingStart,
@@ -97,6 +106,7 @@ function DrumMachine() {
     setRecordingData(newRecordingNode);
   };
 
+  // Handler that runs during playback in order to replay a recording
   const handlePlayBack = () => {
     // Only continue to play if playback button still on and powered
     // Refs need to be used here since setTimeOut does not have hook access
@@ -118,6 +128,7 @@ function DrumMachine() {
     }
   };
 
+  // Handler when pressing 'PlayBack' button -> starts/stops playback of recording
   const handlePlayBackChange = () => {
     if (!recordingStart) {
       setDisplayMessage('No Recordings');
@@ -135,18 +146,14 @@ function DrumMachine() {
     }
   };
 
-  // Ref is required in order to access state inside event listener
-  const pressedKeysRef = useRef(pressedKeys);
-
-  // Add eventListeners for keyboard down/up when the DrumMachine mounts:
+  // Add window eventListeners for keyboard down/up when the DrumMachine mounts:
   useEffect(() => {
     const keyDownEventListener = (e) => {
       if (pressedKeysRef.current[e.code[3]] === false) {
-        pressedKeysRef.current = {
+        setPressedKeys({
           ...pressedKeysRef.current,
           [e.code[3]]: true,
-        };
-        setPressedKeys(pressedKeysRef.current);
+        });
       }
     };
 
@@ -154,11 +161,10 @@ function DrumMachine() {
 
     const keyUpEventListener = (e) => {
       if (pressedKeysRef.current[e.code[3]] === true) {
-        pressedKeysRef.current = {
+        setPressedKeys({
           ...pressedKeysRef.current,
           [e.code[3]]: false,
-        };
-        setPressedKeys(pressedKeysRef.current);
+        });
       }
     };
 
@@ -171,8 +177,11 @@ function DrumMachine() {
     };
   }, []);
 
-  // Effect to update recording data when pressed keys change
+  // Effect to update Ref and recording data when pressed keys change
   useEffect(() => {
+    // Update the pressedKeysRef to match the state of pressedKeys
+    pressedKeysRef.current = pressedKeys;
+
     if (recording) {
       handleRecordingUpdate(pressedKeys);
     }
