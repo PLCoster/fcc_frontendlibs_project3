@@ -60,8 +60,20 @@ body,
   box-shadow: 1px 1px 0px #666, 2px 2px 0px #666, 3px 3px 0px #666,
     4px 4px 0px #666, 5px 5px 0px #666, 6px 6px 0px #666;
 
-  .logo {
-    font-family: 'lobster';
+  .branding {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0px 5px;
+
+    .logo {
+      font-family: 'lobster';
+    }
+
+    .model {
+      font-family: Helvetica;
+      font-weight: 700;
+    }
   }
 
   .drum-machine-container {

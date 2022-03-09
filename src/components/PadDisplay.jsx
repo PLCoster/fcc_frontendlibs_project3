@@ -5,6 +5,7 @@ import DrumPad from './DrumPad';
 
 import padAudioInfo from '../assets/audio/audioLoader';
 
+// Container for 9 drum pads on RHS of Drum Machine
 function PadDisplay({
   pressedKeys,
   setPressedKeys,

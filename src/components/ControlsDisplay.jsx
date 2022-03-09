@@ -12,6 +12,7 @@ import {
 
 import metronomeClip from '../assets/audio/808-claves.mp3';
 
+// Displays all controls in LHS of Drum Machine
 function ControlsDisplay({
   displayMessage,
   setDisplayMessage,
@@ -34,6 +35,7 @@ function ControlsDisplay({
 
   const metronomeAudio = new Audio(metronomeClip);
 
+  // Handler for altering tempo slider
   const handleTempoChange = (newTempo) => {
     tempoRef.current = newTempo;
     setTempo(newTempo);
@@ -42,6 +44,7 @@ function ControlsDisplay({
     }
   };
 
+  // Helper function that runs metronome as long as button and power is on
   const runMetronome = () => {
     if (powerRef.current && metronomeStateRef.current) {
       const timeDiff = (1000 * 60) / tempoRef.current;
@@ -51,10 +54,11 @@ function ControlsDisplay({
         metronomeAudio.play();
         metronomeTimeRef.current = currTime;
       }
-      setTimeout(runMetronome, 10);
+      setTimeout(runMetronome, 1);
     }
   };
 
+  // Handler when metronome button is clicked -> Metronome on/off
   const handleMetronomeChange = () => {
     const newMetroState = !metronomeState;
     metronomeStateRef.current = newMetroState;
@@ -68,8 +72,10 @@ function ControlsDisplay({
       metronomeTimeRef.current = Date.now();
       runMetronome();
     } else if (power && displayMessage !== 'Welcome!') {
+      // Update display when metronome is switched off
       setDisplayMessage('Metronome OFF');
     } else if (metronomeState) {
+      // If power is off and metronome is on, turn it off
       handleMetronomeChange();
     }
   }, [metronomeState, power]);

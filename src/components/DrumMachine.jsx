@@ -189,7 +189,10 @@ function DrumMachine() {
 
   return (
     <div id="drum-machine" className="text-light text-center mt-5 p-3">
-      <h4 className="logo">Free Drummer</h4>
+      <div className="branding">
+        <h4 className="logo">Free Drummer</h4>
+        <h4 className="model">FCC-FEL3-PLC</h4>
+      </div>
       <div className="drum-machine-container">
         <ControlsDisplay
           displayMessage={displayMessage}

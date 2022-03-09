@@ -3,6 +3,7 @@
 /* eslint-disable jsx-a11y/media-has-caption */
 import React, { useState, useEffect, useRef } from 'react';
 
+// Individual Drum Pad Component to activate audio on click / keypress
 function DrumPad({
   id,
   src,
@@ -18,6 +19,7 @@ function DrumPad({
 
   const audioRef = useRef();
 
+  // Helper function to play audio clip when pad is triggered
   const playClip = () => {
     // Don't play the clip if power is off
     if (power) {
@@ -38,6 +40,7 @@ function DrumPad({
     }
   }, [playSound]);
 
+  // Effect to reduce volume of drum pad audio when volume setting changes
   useEffect(() => {
     audioRef.current.volume = volume / 100;
   }, [volume]);
@@ -53,7 +56,7 @@ function DrumPad({
       tabIndex={0}
     >
       {id}
-      {/* TO PASS FCC TESTS NEED TO RENDER AN AUDIO ELEMENT */}
+      {/* TO PASS FCC TESTS NEED TO RENDER AN AUDIO ELEMENT - ACCESS VIA REF */}
       <audio
         ref={audioRef}
         id={id}
