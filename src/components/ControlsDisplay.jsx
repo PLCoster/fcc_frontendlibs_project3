@@ -91,7 +91,7 @@ function ControlsDisplay({
       <div className="mt-3">
         <FontAwesomeIcon icon={faVolumeLow} className="vol-icon" />
         <input
-          id="volume-control"
+          className="slider-control"
           type="range"
           min="0"
           max="100"
@@ -106,7 +106,7 @@ function ControlsDisplay({
       <div className="mt-3">
         <FontAwesomeIcon icon={faGauge} className="vol-icon" />
         <input
-          id="volume-control"
+          className="slider-control"
           type="range"
           min="50"
           max="250"

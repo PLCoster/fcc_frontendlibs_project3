@@ -137,23 +137,31 @@ body,
         background-color: #e65550;
       }
 
-      #volume-control {
+      .slider-control {
+        -webkit-appearance: none;
         margin: 0 10px;
         width: 160px;
         background-color: #111;
         cursor: pointer;
-      }
 
-      #volume-control::-webkit-slider-thumb,
-      #volume-control::-moz-range-thumb {
-        -webkit-appearance: none;
-        appearance: none;
-        width: 25px;
-        height: 25px;
-        background: #e65550;
-        border: 3px solid rgb(141, 51, 51);
-        border-radius: 0px;
-        cursor: pointer;
+        &::-webkit-slider-thumb {
+          -webkit-appearance: none;
+          width: 25px;
+          height: 25px;
+          background: #e65550;
+          border: 3px solid rgb(141, 51, 51);
+          border-radius: 0px;
+          cursor: pointer;
+        }
+
+        &::-moz-range-thumb {
+          width: 25px;
+          height: 25px;
+          background: #e65550;
+          border: 3px solid rgb(141, 51, 51);
+          border-radius: 0px;
+          cursor: pointer;
+        }
       }
 
       .vol-icon {
